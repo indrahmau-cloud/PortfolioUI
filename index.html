@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOC Analyst Portfolio | Rahul Maurya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+  <div class="scanlines"></div>
+  <div class="noise"></div>
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-inner" id="cursorInner"></div>
+  <div id="toast-container"></div>
+
+  <!-- LIVE THREAT TICKER -->
+  <div class="threat-ticker">
+    <span class="ticker-label">// LIVE THREAT FEED</span>
+    <div class="ticker-track" id="tickerTrack">
+      <span>🔴 APT29 lateral movement detected — 192.168.4.12 &nbsp;&nbsp;&nbsp;</span>
+      <span>🟡 Brute-force: 47 failed logins — admin@corp.net &nbsp;&nbsp;&nbsp;</span>
+      <span>🔴 Ransomware IOC match — SHA256: 3a4f9b... &nbsp;&nbsp;&nbsp;</span>
+      <span>🟢 Phishing URL blocked — hxxp://malware-domain[.]xyz &nbsp;&nbsp;&nbsp;</span>
+      <span>🔴 Privilege escalation — USER: svc_backup → ADMIN &nbsp;&nbsp;&nbsp;</span>
+      <span>🟡 Suspicious PowerShell exec: encoded payload detected &nbsp;&nbsp;&nbsp;</span>
+      <span>🟢 Splunk alert: DDoS pattern — 14k req/s mitigated &nbsp;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><span class="bracket">[</span>RM<span class="bracket">]</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-link active" data-section="hero"><span class="nav-num">00</span><span class="nav-label">Home</span></a>
+      <a href="#" class="nav-link" data-section="about"><span class="nav-num">01</span><span class="nav-label">About</span></a>
+      <a href="#" class="nav-link" data-section="skills"><span class="nav-num">02</span><span class="nav-label">Skills</span></a>
+      <a href="#" class="nav-link" data-section="projects"><span class="nav-num">03</span><span class="nav-label">Projects</span></a>
+      <a href="#" class="nav-link" data-section="certs"><span class="nav-num">04</span><span class="nav-label">Certs</span></a>
+      <a href="#" class="nav-link" data-section="contact"><span class="nav-num">05</span><span class="nav-label">Contact</span></a>
+    </nav>
+    <div class="sidebar-status"><div class="status-dot"></div><span class="status-text">ONLINE</span></div>
+    <button class="theme-toggle" id="themeToggle">[LIGHT]</button>
+  </aside>
+
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+  <main class="main-content" id="mainContent">
+
+    <!-- ── HERO ── -->
+    <section class="spa-section active" id="hero">
+      <div class="hero-bg">
+        <div class="hero-grid-lines"></div>
+        <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-tag">// security_ops_center.analyst — <span id="liveTime"></span></div>
+        <h1 class="hero-name">
+          <span class="name-first">RAHUL</span>
+          <span class="name-last" id="glitchName">MAURYA</span>
+        </h1>
+        <div class="hero-title">
+          <span class="prompt-sym">$</span>&nbsp;<span id="typewriter"></span><span class="cursor-blink">▋</span>
+        </div>
+        <div class="hero-meta">
+          <span class="meta-item"><span class="meta-key">STATUS:</span> <span class="green">Active Defender</span></span>
+          <span class="meta-divider">//</span>
+          <span class="meta-item"><span class="meta-key">ALERTS:</span> <span class="amber" id="alertCount">0</span></span>
+          <span class="meta-divider">//</span>
+          <span class="meta-item"><span class="meta-key">THREAT:</span> <span class="red" id="threatLevel">ELEVATED</span></span>
+        </div>
+        <div class="hero-cta">
+          <button class="btn-primary" data-goto="contact">ESTABLISH CONNECTION</button>
+          <button class="btn-outline" data-goto="projects">VIEW OPS LOG</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num" data-count="342">0</span><span class="stat-label">Incidents Resolved</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="98">0</span><span class="stat-label">Detection Rate %</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="4">0</span><span class="stat-label">Certifications</span></div>
+        <div class="stat-item"><span class="stat-num" data-count="12">0</span><span class="stat-label">Tools Mastered</span></div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section class="spa-section" id="about">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">ABOUT.ME</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-container">
+        <div class="about-img-wrap">
+          <div class="img-frame">
+            <img src="a.jpg" alt="Rahul Maurya">
+            <div class="img-corner tl"></div><div class="img-corner tr"></div>
+            <div class="img-corner bl"></div><div class="img-corner br"></div>
+            <div class="img-scan"></div>
+          </div>
+          <div class="img-id">ID: RM-SOC-2025</div>
+          <canvas id="radarChart" width="200" height="200" class="radar-canvas"></canvas>
+        </div>
+        <div class="about-text">
+          <div class="terminal-box">
+            <div class="terminal-bar">
+              <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
+              <span class="t-title">about.sh</span>
+              <button class="t-run" id="rerunTerminal">▶ run</button>
+            </div>
+            <div class="terminal-body" id="terminalBody"></div>
+          </div>
+          <div class="timeline-wrap">
+            <div class="timeline-header">
+              <span class="tl-label">// CAREER TIMELINE</span>
+              <div class="tl-controls">
+                <button class="tl-btn" id="tlPrev">◀</button>
+                <span id="tlIndex">1 / 4</span>
+                <button class="tl-btn" id="tlNext">▶</button>
+              </div>
+            </div>
+            <div class="timeline-slider" id="timelineSlider">
+              <div class="tl-slide active"><div class="tl-year">2020</div><div class="tl-role">B.Tech — Computer Science</div><div class="tl-desc">Graduated with focus on networking & OS internals. First encounter with Kali Linux and packet analysis.</div></div>
+              <div class="tl-slide"><div class="tl-year">2021</div><div class="tl-role">Security Intern — TechCorp</div><div class="tl-desc">Assisted in log triage, wrote first Python automation scripts for SIEM alert filtering. Reduced false positives by 30%.</div></div>
+              <div class="tl-slide"><div class="tl-year">2022</div><div class="tl-role">Junior SOC Analyst</div><div class="tl-desc">Handled Tier-1 & Tier-2 alert triage. Built Splunk dashboards that flagged a live ransomware campaign before detonation.</div></div>
+              <div class="tl-slide"><div class="tl-year">2024–Now</div><div class="tl-role">SOC Analyst — Threat Hunting</div><div class="tl-desc">Proactive threat hunting using MITRE ATT&CK. Authored IR playbooks and deployed SOAR automation reducing MTTR by 45%.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section class="spa-section" id="skills">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">SKILL_MATRIX</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skill-filters">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="analysis">ANALYSIS</button>
+        <button class="filter-btn" data-filter="tools">TOOLS</button>
+        <button class="filter-btn" data-filter="coding">CODING</button>
+        <button class="filter-btn" data-filter="response">RESPONSE</button>
+      </div>
+      <div class="skill-grid" id="skillGrid">
+        <div class="skill-card" data-category="coding"><div class="skill-icon">{'<>'}</div><h3>Coding Skills</h3><div class="skill-tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span><span class="tag">HTML/CSS</span><span class="tag">MySQL</span><span class="tag">Java</span></div><div class="skill-bar"><div class="skill-fill" data-w="88"></div></div><div class="skill-pct">88%</div></div>
+        <div class="skill-card" data-category="analysis"><div class="skill-icon">[!]</div><h3>Threat Analysis</h3><p>Threat intelligence, malware behavior, and MITRE ATT&CK.</p><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><div class="skill-pct">92%</div></div>
+        <div class="skill-card" data-category="tools"><div class="skill-icon">[~]</div><h3>SIEM Tools</h3><p>Splunk, QRadar, and Microsoft Sentinel for log monitoring.</p><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><div class="skill-pct">90%</div></div>
+        <div class="skill-card" data-category="response"><div class="skill-icon">[*]</div><h3>Incident Response</h3><p>Triage, containment, and eradication via NIST IR frameworks.</p><div class="skill-bar"><div class="skill-fill" data-w="87"></div></div><div class="skill-pct">87%</div></div>
+        <div class="skill-card" data-category="analysis"><div class="skill-icon">[#]</div><h3>Network Security</h3><p>Firewalls, IDS/IPS, Wireshark, and secure architecture.</p><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><div class="skill-pct">85%</div></div>
+        <div class="skill-card" data-category="tools"><div class="skill-icon">[$]</div><h3>Endpoint Protection</h3><p>CrowdStrike, Carbon Black, Defender for Endpoint.</p><div class="skill-bar"><div class="skill-fill" data-w="89"></div></div><div class="skill-pct">89%</div></div>
+        <div class="skill-card" data-category="response"><div class="skill-icon">[>]</div><h3>Security Automation</h3><p>SOAR playbooks and Python for automated incident handling.</p><div class="skill-bar"><div class="skill-fill" data-w="82"></div></div><div class="skill-pct">82%</div></div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="spa-section" id="projects">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">OPS_LOG</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="project-grid">
+        <div class="project-card" data-modal="modal1"><div class="project-id">// PROJECT_001</div><h3>Phishing Detection Script</h3><p>Automated phishing URL detection using Python and VirusTotal API.</p><div class="project-footer"><span class="proj-tag">Python</span><span class="proj-tag">API</span><span class="proj-tag">Threat Intel</span></div><div class="project-open">OPEN LOG →</div></div>
+        <div class="project-card" data-modal="modal2"><div class="project-id">// PROJECT_002</div><h3>Splunk SOC Dashboard</h3><p>Real-time anomaly dashboards for brute-force and DDoS detection.</p><div class="project-footer"><span class="proj-tag">Splunk</span><span class="proj-tag">SIEM</span><span class="proj-tag">Visualization</span></div><div class="project-open">OPEN LOG →</div></div>
+        <div class="project-card" data-modal="modal3"><div class="project-id">// PROJECT_003</div><h3>IR Playbook — NIST 800-61</h3><p>Incident response playbooks for ransomware and insider threats.</p><div class="project-footer"><span class="proj-tag">NIST</span><span class="proj-tag">Ransomware</span><span class="proj-tag">IR</span></div><div class="project-open">OPEN LOG →</div></div>
+      </div>
+    </section>
+
+    <!-- ── CERTS ── -->
+    <section class="spa-section" id="certs">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">CREDENTIALS</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-badge">SEC+</div><div class="cert-info"><div class="cert-name">CompTIA Security+</div><div class="cert-issuer">CompTIA</div><div class="cert-bar"><div class="cert-fill" style="--w:100%"></div></div></div><div class="cert-status">VERIFIED</div></div>
+        <div class="cert-card"><div class="cert-badge">CSA</div><div class="cert-info"><div class="cert-name">Certified SOC Analyst</div><div class="cert-issuer">EC-Council</div><div class="cert-bar"><div class="cert-fill" style="--w:100%"></div></div></div><div class="cert-status">VERIFIED</div></div>
+        <div class="cert-card"><div class="cert-badge">SPL</div><div class="cert-info"><div class="cert-name">Splunk Core Certified User</div><div class="cert-issuer">Splunk</div><div class="cert-bar"><div class="cert-fill" style="--w:100%"></div></div></div><div class="cert-status">VERIFIED</div></div>
+        <div class="cert-card"><div class="cert-badge">SC</div><div class="cert-info"><div class="cert-name">Security Operations Analyst</div><div class="cert-issuer">Microsoft SC-200</div><div class="cert-bar"><div class="cert-fill" style="--w:100%"></div></div></div><div class="cert-status">VERIFIED</div></div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="spa-section" id="contact">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">ESTABLISH_CONNECTION</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-links">
+          <a href="#" class="contact-card"><span class="contact-key">MOBILE</span><span class="contact-val">9xxxxxxxxx</span><span class="contact-arrow">→</span></a>
+          <a href="mailto:ind.rahmau@gmail.com" class="contact-card"><span class="contact-key">EMAIL</span><span class="contact-val">ind.rahmau@gmail.com</span><span class="contact-arrow">→</span></a>
+          <a href="#" class="contact-card"><span class="contact-key">LINKEDIN</span><span class="contact-val">linkedin.com/in/rahulmaurya</span><span class="contact-arrow">→</span></a>
+          <a href="#" class="contact-card"><span class="contact-key">GITHUB</span><span class="contact-val">github.com/rahulmaurya</span><span class="contact-arrow">→</span></a>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-header">
+            <span class="form-title">// SEND_MESSAGE.sh</span>
+            <span class="form-status" id="formStatus"></span>
+          </div>
+          <div class="form-group" id="grp-name">
+            <label for="inp-name">NAME <span class="required">*</span></label>
+            <input type="text" id="inp-name" placeholder="John Doe" autocomplete="name">
+            <div class="input-border"></div>
+            <div class="field-error" id="err-name"></div>
+          </div>
+          <div class="form-group" id="grp-email">
+            <label for="inp-email">EMAIL <span class="required">*</span></label>
+            <input type="email" id="inp-email" placeholder="you@domain.com">
+            <div class="input-border"></div>
+            <div class="field-error" id="err-email"></div>
+          </div>
+          <div class="form-group" id="grp-subject">
+            <label>SUBJECT <span class="required">*</span></label>
+            <div class="custom-select" id="customSelect">
+              <div class="select-trigger" id="selectTrigger"><span id="selectText">Select inquiry type...</span><span class="select-arrow">▼</span></div>
+              <div class="select-dropdown" id="selectDropdown">
+                <div class="select-option" data-value="job">Job Opportunity</div>
+                <div class="select-option" data-value="collab">Collaboration</div>
+                <div class="select-option" data-value="consulting">Security Consulting</div>
+                <div class="select-option" data-value="general">General Inquiry</div>
+              </div>
+            </div>
+            <input type="hidden" id="inp-subject">
+            <div class="field-error" id="err-subject"></div>
+          </div>
+          <div class="form-group" id="grp-msg">
+            <label for="inp-msg">MESSAGE <span class="required">*</span></label>
+            <textarea id="inp-msg" rows="4" placeholder="Describe your inquiry..."></textarea>
+            <div class="input-border"></div>
+            <div class="char-count"><span id="charCount">0</span>/500</div>
+            <div class="field-error" id="err-msg"></div>
+          </div>
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="inp-consent">
+              <span class="checkbox-custom"></span>
+              I consent to being contacted via the details provided
+            </label>
+            <div class="field-error" id="err-consent"></div>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="submitText">TRANSMIT MESSAGE</span>
+            <span class="submit-loader hidden" id="submitLoader">◌</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-copy">&copy; 2025 RAHUL MAURYA</span>
+        <span class="footer-divider">//</span>
+        <span class="footer-role">SOC ANALYST</span>
+        <span class="footer-divider">//</span>
+        <span class="footer-sig">ALL SYSTEMS SECURED</span>
+        <button class="back-top" id="backTop">↑ TOP</button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- MODALS -->
+  <div class="modal-overlay" id="modal1">
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal1">✕</button>
+      <div class="modal-tag">// PROJECT_001</div>
+      <h2>Phishing Detection Script</h2>
+      <div class="modal-meta"><span class="proj-tag">Python</span><span class="proj-tag">VirusTotal API</span></div>
+      <div class="modal-body">
+        <p>Automated Python script querying VirusTotal API to classify URLs as malicious, suspicious, or clean from bulk CSV input with rate-limit handling and full report generation.</p>
+        <div class="code-block"><span class="code-comment"># Core detection logic</span>
+<span class="code-kw">import</span> requests
+
+<span class="code-kw">def</span> <span class="code-fn">check_url</span>(url, api_key):
+    r = requests.post(VT_SCAN, data={<span class="code-str">"url"</span>: url},
+        headers={<span class="code-str">"x-apikey"</span>: api_key})
+    <span class="code-kw">return</span> r.json()[<span class="code-str">"data"</span>][<span class="code-str">"id"</span>]</div>
+        <div class="modal-stats">
+          <div class="mstat"><span class="mstat-num">1,200+</span><span class="mstat-l">URLs Scanned</span></div>
+          <div class="mstat"><span class="mstat-num">97%</span><span class="mstat-l">Accuracy</span></div>
+          <div class="mstat"><span class="mstat-num">3x</span><span class="mstat-l">Faster</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal2">
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal2">✕</button>
+      <div class="modal-tag">// PROJECT_002</div>
+      <h2>Splunk SOC Dashboard</h2>
+      <div class="modal-meta"><span class="proj-tag">Splunk</span><span class="proj-tag">SPL</span></div>
+      <div class="modal-body">
+        <p>Multi-panel Splunk dashboard using SPL to surface anomalies from firewall, endpoint, and AD logs. Automated correlation rules detect brute-force and DDoS patterns within seconds.</p>
+        <div class="code-block"><span class="code-comment">| SPL — Brute Force Detection</span>
+index=auth_logs sourcetype=WinEventLog
+EventCode=4625
+| stats count by src_ip, user
+| <span class="code-kw">where</span> count > 10
+| <span class="code-fn">eval</span> severity=<span class="code-str">"HIGH"</span></div>
+        <div class="modal-stats">
+          <div class="mstat"><span class="mstat-num">8</span><span class="mstat-l">Panels</span></div>
+          <div class="mstat"><span class="mstat-num">60s</span><span class="mstat-l">Detection</span></div>
+          <div class="mstat"><span class="mstat-num">40%</span><span class="mstat-l">Alert Reduction</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal3">
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal3">✕</button>
+      <div class="modal-tag">// PROJECT_003</div>
+      <h2>IR Playbook — NIST 800-61</h2>
+      <div class="modal-meta"><span class="proj-tag">NIST</span><span class="proj-tag">Ransomware</span></div>
+      <div class="modal-body">
+        <p>Structured playbooks following NIST SP 800-61 Rev.2 covering preparation, detection, containment, eradication, and recovery. Includes decision trees for ransomware and insider threat scenarios.</p>
+        <div class="code-block"><span class="code-comment"># RANSOMWARE RESPONSE</span>
+Phase 1 → Detect &amp; Triage
+  ✓ Identify affected hosts (EDR)
+  ✓ Preserve volatile memory
+Phase 2 → Contain
+  ✓ Isolate host from network
+Phase 3 → Eradicate
+  ✓ Image and reimage system</div>
+        <div class="modal-stats">
+          <div class="mstat"><span class="mstat-num">6</span><span class="mstat-l">Playbooks</span></div>
+          <div class="mstat"><span class="mstat-num">45%</span><span class="mstat-l">MTTR Reduction</span></div>
+          <div class="mstat"><span class="mstat-num">NIST</span><span class="mstat-l">Compliant</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>

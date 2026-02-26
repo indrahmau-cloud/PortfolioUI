@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biodata – Rahul Maurya</title>
+  <link rel="stylesheet" href="biodata2.css" />
+</head>
+<body>
+
+  <!-- Dark Mode Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+
+  <div class="container" id="mainContainer">
+
+    <!-- ── Profile Header ── -->
+    <div class="profile">
+      <div class="profile-img-wrapper">
+        <img src="a.jpg" alt="Rahul Maurya" id="profileImg" />
+      </div>
+      <h1>Rahul Maurya</h1>
+      <p>Student at Parul University &nbsp;·&nbsp; Tech Security &nbsp;·&nbsp; SOC Analyst</p>
+      <span class="status-badge">🟢 Open to Opportunities</span>
+    </div>
+
+    <!-- ── Details ── -->
+    <div class="details">
+
+      <!-- Personal -->
+      <div class="section-card">
+        <h2><span class="icon">👤</span> Personal Information</h2>
+        <ul>
+          <li><strong>Date of Birth:</strong> 11 February 2006</li>
+          <li><strong>Age:</strong> <span id="ageDisplay">—</span></li>
+          <li><strong>Gender:</strong> Male</li>
+          <li><strong>Nationality:</strong> Indian</li>
+          <li><strong>Languages:</strong> English, Hindi, Bhojpuri, Bengali</li>
+        </ul>
+      </div>
+
+      <!-- Family -->
+      <div class="section-card">
+        <h2><span class="icon">🏠</span> Family Information</h2>
+        <ul>
+          <li><strong>Father's Name:</strong> A Maurya</li>
+          <li><strong>Mother's Name:</strong> S Maurya</li>
+          <li><strong>Father's Occupation:</strong> Business</li>
+          <li><strong>Contact:</strong> 9XXXXXXXXXXXX</li>
+          <li><strong>Address:</strong>  Assam</li>
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div class="section-card">
+        <h2><span class="icon">🎓</span> Education</h2>
+        <ul>
+          <li><strong>Class 10:</strong> 75%</li>
+          <li><strong>Class 10+2:</strong> 70% (Science)</li>
+          <li><strong>Current:</strong> B.Tech in CSE – Cybersecurity, Parul University</li>
+          <li><strong>CGPA Goal:</strong> 9.0+</li>
+        </ul>
+      </div>
+
+      <!-- Programming -->
+      <div class="section-card">
+        <h2><span class="icon">💻</span> Programming Languages</h2>
+        <div class="tag-cloud" id="tagCloud">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">C#</span>
+          <span class="tag">Python</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">MySQL / SQL</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="section-card">
+        <h2><span class="icon">📬</span> Contact</h2>
+        <ul>
+          <li><strong>Email:</strong>
+            <a class="contact-link" href="mailto:ind.rahmau@gmail.com">ind.rahmau@gmail.com</a>
+          </li>
+          <li><strong>Phone:</strong>
+            <a class="contact-link" href="tel:+91XXXXXXXX">+91 XXXXXXXXX</a>
+          </li>
+          <li><strong>Current Location:</strong> Vaghodia, Gujarat</li>
+          <li><strong>Permanent Address:</strong> Tinsukia, Assam</li>
+        </ul>
+      </div>
+
+    </div><!-- /details -->
+  </div><!-- /container -->
+
+  <script>
+    /* ══════════════════════════════════════════
+       1. DARK MODE TOGGLE
+    ══════════════════════════════════════════ */
+    const toggleBtn = document.getElementById('themeToggle');
+    const body      = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') applyDark();
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    function applyDark() {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    /* ══════════════════════════════════════════
+       2. SCROLL-BASED SECTION REVEAL
+    ══════════════════════════════════════════ */
+    const cards = document.querySelectorAll('.section-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger each card slightly
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    cards.forEach(card => observer.observe(card));
+
+    /* ══════════════════════════════════════════
+       3. LIVE AGE CALCULATOR
+    ══════════════════════════════════════════ */
+    function calcAge(dob) {
+      const today = new Date();
+      const birth = new Date(dob);
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+      return age;
+    }
+
+    const ageEl = document.getElementById('ageDisplay');
+    ageEl.textContent = calcAge('2006-02-11') + ' years';
+
+    /* ══════════════════════════════════════════
+       4. PROFILE IMAGE FALLBACK
+    ══════════════════════════════════════════ */
+    const profileImg = document.getElementById('profileImg');
+    profileImg.addEventListener('error', () => {
+      // Generate a nice monogram avatar using Canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = 130;
+      const ctx = canvas.getContext('2d');
+
+      const grad = ctx.createLinearGradient(0, 0, 130, 130);
+      grad.addColorStop(0, '#005fa3');
+      grad.addColorStop(1, '#00c6ff');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(65, 65, 65, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.font = 'bold 52px Playfair Display, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('RM', 65, 68);
+
+      profileImg.src = canvas.toDataURL();
+    });
+
+    /* ══════════════════════════════════════════
+       5. TAG HOVER SOUND EFFECT (visual feedback)
+    ══════════════════════════════════════════ */
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('mouseenter', () => {
+        tag.style.transition = 'transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s';
+      });
+    });
+
+    /* ══════════════════════════════════════════
+       6. TYPING EFFECT on subtitle
+    ══════════════════════════════════════════ */
+    const subtitle = document.querySelector('.profile p');
+    const originalText = subtitle.textContent;
+    subtitle.textContent = '';
+    subtitle.style.opacity = '1';
+
+    let charIdx = 0;
+    function typeWriter() {
+      if (charIdx < originalText.length) {
+        subtitle.textContent += originalText[charIdx++];
+        setTimeout(typeWriter, charIdx < 10 ? 60 : 28);
+      }
+    }
+    // Start typing after profile animation settles
+    setTimeout(typeWriter, 900);
+
+    /* ══════════════════════════════════════════
+       7. CLICK-TO-COPY CONTACT INFO
+    ══════════════════════════════════════════ */
+    function addCopyFeedback(el, text) {
+      el.style.cursor = 'copy';
+      el.title = 'Click to copy';
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(text).then(() => {
+          const original = el.textContent;
+          el.textContent = '✅ Copied!';
+          setTimeout(() => { el.textContent = original; }, 1500);
+        });
+      });
+    }
+
+    const emailLink = document.querySelector('a[href^="mailto"]');
+    const phoneLink = document.querySelector('a[href^="tel"]');
+    if (emailLink) addCopyFeedback(emailLink, 'ind.rahmau@gmail.com');
+    if (phoneLink) addCopyFeedback(phoneLink, '+91XXXXXXXXXX');
+
+    /* ══════════════════════════════════════════
+       8. STAGGER section card border pulse on load
+    ══════════════════════════════════════════ */
+    cards.forEach((card, i) => {
+      card.style.setProperty('--delay', `${i * 0.1}s`);
+    });
+  </script>
+</body>
+</html>
